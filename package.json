@@ -1,0 +1,64 @@
+{
+  "name": "wp_docker",
+  "version": "1.0.0",
+  "description": "A WordPress base theme build with Docker",
+  "main": "app.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "npm run watch && npm run serve",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --env.production",
+    "watch": "webpack --watch --env.development",
+    "lint:js": "eslint assets/js",
+    "lint:style": "stylelint 'assets/scss/**/*.scss'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicolashuber/wordpress-base-theme.git"
+  },
+  "keywords": [
+    "wordpress",
+    "theme"
+  ],
+  "author": "Nícolas Huber",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nicolashuber/wordpress-base-theme/issues"
+  },
+  "homepage": "https://github.com/nicolashuber/wordpress-base-theme#readme",
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "babel-loader": "^8.0.4",
+    "browser-sync": "^2.26.3",
+    "browser-sync-webpack-plugin": "^2.2.2",
+    "css-loader": "^1.0.1",
+    "eslint": "^5.12.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "file-loader": "^2.0.0",
+    "mini-css-extract-plugin": "^0.4.5",
+    "node-sass": "^4.11.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "stylelint": "^9.9.0",
+    "stylelint-config-recommended-scss": "^3.2.0",
+    "stylelint-config-twbs-bootstrap": "^0.2.1",
+    "stylelint-declaration-strict-value": "^1.1.2",
+    "stylelint-declaration-use-variable": "^1.7.0",
+    "stylelint-scss": "^3.4.4",
+    "uglifyjs-webpack-plugin": "^2.1.0",
+    "webpack": "^4.28.2",
+    "webpack-cli": "^3.1.2"
+  },
+  "dependencies": {
+    "bootstrap": "^4.2.1",
+    "lodash": "^4.17.11"
+  }
+}

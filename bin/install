@@ -1,0 +1,23 @@
+#!/bin/bash
+
+source bin/_dotenv
+
+# Variables
+WP="${APP}/vendor/bin/wp --allow-root --path=${WEB}"
+
+# Create assets link
+ln -fs ${APP}/dist ${APP}/src/assets
+
+# Create theme link
+ln -fs ${APP}/src ${APP}/web/wp-content/themes/"${THEME}"
+
+# Create wp-config.php link
+ln -fs ${APP}/config/wp-config.php ${APP}/web/wp-config.php
+
+# Install WordPress
+if ! $WP core is-installed 2> /dev/null; then
+    $WP core install --url="${WP_URL}" --title="${WP_TITLE}" --admin_user="${WP_USER}" --admin_password="${WP_PASSWORD}" --admin_email="${WP_EMAIL}"
+fi
+
+# Install theme
+$WP theme activate "${THEME}"

@@ -1,0 +1,30 @@
+#!/bin/bash
+
+set -e
+
+# Go to project root
+cd $(dirname "$0")/..
+
+# Variables
+APP=$(pwd)
+ENV="${APP}/.env"
+WEB="${APP}/web"
+
+# Read and import dotenv variables to script
+dotenv () {
+  DOTENV_SHELL_LOADER_SAVED_OPTS=$(set +o)
+  set -o allexport
+  [ -f "${ENV}" ] && source "${ENV}"
+  set +o allexport
+  eval "${DOTENV_SHELL_LOADER_SAVED_OPTS}"
+  unset DOTENV_SHELL_LOADER_SAVED_OPTS
+}
+
+# Check if the .env file exists
+if [ ! -f "${ENV}" ]; then
+    echo 'Dotenv file not found'
+    exit 1
+fi
+
+# Load .env variables
+dotenv

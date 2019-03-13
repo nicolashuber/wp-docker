@@ -1,0 +1,32 @@
+{
+    "name": "nicolashuber/wp_docker",
+    "description": "A WordPress base theme build with Docker",
+    "license": "MIT",
+    "repositories": [{
+		"type": "composer",
+		"url": "https://wpackagist.org"
+	}],
+    "authors": [
+        {
+            "name": "Nicolas Huber",
+            "email": "nicolasluishuber@gmail.com"
+        }
+    ],
+    "require": {
+        "johnpbloch/wordpress": "^5.1",
+        "vlucas/phpdotenv": "^3.3",
+        "wp-cli/wp-cli-bundle": "^2.1"
+    },
+    "extra": {
+		"wordpress-install-dir": "web",
+		"installer-paths": {
+			"web/wp-content/plugins/{$name}/": [
+				"type:wordpress-plugin"
+			],
+			"web/wp-content/themes/{$name}/": [
+				"type:wordpress-theme"
+			]
+		}
+	}
+
+}

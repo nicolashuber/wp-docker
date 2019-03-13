@@ -1,0 +1,18 @@
+# WordPress
+web
+
+# Assets
+dist
+
+# Symlinks
+src/src
+src/assets
+
+# Compose vendor
+vendor
+
+# MariaDB
+database
+
+# NPM modules
+node_modules

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+source bin/_dotenv
+
+TMP=.pack
+
+rm -rf "${TMP}"
+
+cp -r web/wp-content/themes/"${THEME}"/ "${TMP}"
+
+rm "${TMP}"/{wp_docker,assets/dist}
+
+cd "${TMP}"
+
+zip -r ../"${THEME}".zip *
+
+rm -rf "${TMP}"

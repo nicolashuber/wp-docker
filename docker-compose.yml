@@ -1,0 +1,69 @@
+version: "3.3"
+
+services:
+  # Server
+  server:
+    build:
+      context: ./docker/nginx
+    ports:
+      - "80:80"
+    links:
+      - php
+    volumes:
+      - .:/app
+
+  # PHP
+  php:
+    build:
+      context: ./docker/php
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+
+  # WordPress
+  wordpress:
+    build:
+      context: ./docker/php
+    volumes:
+      - ./:/app
+    depends_on:
+      - db
+
+  # WP CLI
+  wp:
+    build:
+      context: ./docker/php
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    entrypoint: 'vendor/bin/wp --allow-root --path=web'
+
+  # MariaDB
+  db:
+    image: mariadb:10.3
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./database:/var/lib/mysql
+      - ./initdb:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: project
+      MYSQL_USER: project
+      MYSQL_PASSWORD: project
+
+  # Composer
+  composer:
+    image: composer
+    volumes:
+      - .:/app
+      - ~/.docker_cache/composer:/tmp/cache
+
+  # Node
+  node:
+    image: node
+    volumes:
+      - .:/app
+    working_dir: /app
