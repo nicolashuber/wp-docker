@@ -2,11 +2,11 @@
 web
 
 # Assets
-dist
+assets/dist
 
-# Symlinks
-src/src
-src/assets
+# Pack
+.pack
+theme.zip
 
 # Compose vendor
 vendor

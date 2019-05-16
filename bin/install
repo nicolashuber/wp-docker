@@ -5,14 +5,11 @@ source bin/_dotenv
 # Variables
 WP="${APP}/vendor/bin/wp --allow-root --path=${WEB}"
 
-# Create assets link
-ln -fs ${APP}/dist ${APP}/src/assets
-
 # Create theme link
 ln -fs ${APP}/src ${APP}/web/wp-content/themes/"${THEME}"
 
-# Create wp-config.php link
-ln -fs ${APP}/config/wp-config.php ${APP}/web/wp-config.php
+# Create wp-config.php
+/bin/cp -rf ${APP}/config/wp-config/${ENV}.php ${APP}/web/wp-config.php
 
 # Install WordPress
 if ! $WP core is-installed 2> /dev/null; then

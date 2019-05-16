@@ -1,16 +1,23 @@
 const path = require('path')
+const webpack = require('webpack')
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
-module.exports = env => {
+const dotenv = require('dotenv').config({ path: __dirname + '/.env' })
+const env = dotenv.parsed
+
+module.exports = () => {
   return {
-    mode: env.production ? 'production' : 'development',
-    entry: './assets/app.js',
+    mode: env.ENV,
+    entry: {
+        app: './assets/app.js',
+        admin: './assets/admin/app.js'
+    },
     output: {
-      filename: 'app.js',
-      path: path.resolve(__dirname, 'dist')
+      filename: '[name].js',
+      path: path.resolve(__dirname, 'assets/dist')
     },
     module: {
       rules: [
@@ -54,6 +61,9 @@ module.exports = env => {
       ]
     },
     plugins: [
+      new webpack.DefinePlugin({
+        'process.env': env
+      }),
       new MiniCssExtractPlugin({
         filename: 'app.css',
         chunkFilename: 'vendor.css'

@@ -1,17 +1,22 @@
 #!/bin/bash
 
+set -xe
+
 source bin/_dotenv
 
-TMP=.pack
+# Variables
+TMP=.theme
+
+# Process
 
 rm -rf "${TMP}"
 
 cp -r web/wp-content/themes/"${THEME}"/ "${TMP}"
 
-rm "${TMP}"/{wp_docker,assets/dist}
+rm "${TMP}"/"${THEME}"
 
 cd "${TMP}"
 
-zip -r ../"${THEME}".zip *
+zip -r ../theme.zip *
 
 rm -rf "${TMP}"
