@@ -48,11 +48,13 @@ services:
     volumes:
       - ./database:/var/lib/mysql
       - ./initdb:/docker-entrypoint-initdb.d
+      - ./docker/mariadb/innodb-fix.cnf:/etc/mysql/conf.d/innodb-fix.cnf
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: project
       MYSQL_USER: project
       MYSQL_PASSWORD: project
+    command: mysqld --innodb-flush-method=littlesync --innodb-use-native-aio=OFF --log_bin=ON
 
   # Composer
   composer:
