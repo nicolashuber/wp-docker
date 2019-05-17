@@ -1,1 +1,3 @@
-console.log('aqui')
+
+import './js'
+import './scss/app.scss'

@@ -13,7 +13,7 @@ module.exports = () => {
     mode: env.ENV,
     entry: {
         app: './assets/app.js',
-        admin: './assets/admin/app.js'
+        customizer: './assets/customizer/app.js'
     },
     output: {
       filename: '[name].js',
